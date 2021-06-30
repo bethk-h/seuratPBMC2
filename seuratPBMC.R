@@ -14,7 +14,8 @@ pbmc.data[c("CD3D", "TCL1A", "MS4A1"), 1:30]
 #The number of unique genes, total molecules and percentage mitochondrial counts can allow cell filtering.
 #QC metrics for the first 5 cells
 head (pbmc@meta.data, 5)
-#Note mitochondrial data is missing
+#Note mitochondrial data is missing - add below
+pbmc[["percent.mt"]] <- PercentageFeatureSet(pbmc, pattern = "^MT-")
 #Visualising QC metrics as a violin plot
 VlnPlot(pbmc, features =c("nFeature_RNA", "nCount_RNA", "percent.mt", ncol=3))
 #To visualise feature feature relationships use FeatureScatter
